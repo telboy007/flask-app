@@ -4,6 +4,10 @@
 
 Web based build your own multiple path story app.
 
+## Requirments:
+
+Python 2.7+
+
 ## How to run:
 
 - Clone github repo

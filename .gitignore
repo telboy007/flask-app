@@ -98,3 +98,4 @@ ENV/
 # mypy
 .mypy_cache/
 .pytest_cache/
+flask_app/flask_app.db
