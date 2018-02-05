@@ -1,6 +1,5 @@
 #!/usr/bin/env python
 
-import logging
 import os
 import pytest
 import sys
@@ -82,15 +81,15 @@ class FlaskAppTestCase(unittest.TestCase):
 
 
     def test_400(self):
-        """ checks for redirect """
+        """ checks for 400 page """
         rv = self.app.post('/add', 
             data=dict(), 
             follow_redirects=True)
-        assert 'unexpected' in rv.data
+        assert 'Bad Request' in rv.data
 
 
     def test_404(self):
-        """ checks for redirect """
+        """ checks for 404 page"""
         rv = self.app.get('/foo')
         assert 'File Not Found' in rv.data
 
