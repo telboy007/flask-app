@@ -1,0 +1,1 @@
+export FLASK_APP=flask_app;export FLASK_DEBUG=true;flask initdb;echo "Running app: " $FLASK_APP;flask run
