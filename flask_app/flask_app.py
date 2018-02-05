@@ -143,6 +143,17 @@ def restart_story():
     return redirect(url_for('show_entries', key=master_key))
 
 
+# error handling
+@app.errorhandler(400)
+def internal_error(error):
+    return render_template('400.html'), 400
+
+
+@app.errorhandler(404)
+def not_found_error(error):
+    return render_template('404.html'), 404
+
+
 if __name__ == '__main__':
     """ Alternative method to run flask app on different port if required. """
     app.run(debug=True, port=8800)

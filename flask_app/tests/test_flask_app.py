@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 
+import logging
 import os
 import pytest
 import sys
@@ -11,7 +12,7 @@ sys.path.append('./flask_app')
 import flask_app
 
 
-class HaploCodeChallengeTestCase(unittest.TestCase):
+class FlaskAppTestCase(unittest.TestCase):
 
     # so capsys can be used within TestClass
     @pytest.fixture(autouse=True)
@@ -54,6 +55,7 @@ class HaploCodeChallengeTestCase(unittest.TestCase):
                 text='test message'
                 ), 
             follow_redirects=True)
+        out, err = self.capsys.readouterr()
         assert b'In a galaxy far far away...' in rv.data
         assert b"<a href='/key=aa'>test message</a>" in rv.data
 
@@ -77,6 +79,20 @@ class HaploCodeChallengeTestCase(unittest.TestCase):
         self.test_add_entry()
         rv = self.app.get('/restart')
         assert b"<a href='/key=aa'>test message</a>" not in rv.data
+
+
+    def test_400(self):
+        """ checks for redirect """
+        rv = self.app.post('/add', 
+            data=dict(), 
+            follow_redirects=True)
+        assert 'unexpected' in rv.data
+
+
+    def test_404(self):
+        """ checks for redirect """
+        rv = self.app.get('/foo')
+        assert 'File Not Found' in rv.data
 
 
 if __name__ == "__main__":

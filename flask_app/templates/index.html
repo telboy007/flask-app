@@ -5,6 +5,8 @@
 </head>
 <body>
 
+{% block content %}
+
 <link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
 <a href="/key=a">Back to the Beginning</a><br /><a href="/restart">Restart Story</a>
 
@@ -71,6 +73,8 @@
     </tr>
 </table>
 </center>
+
+{% endblock %}
 
 </body>
 </html>
