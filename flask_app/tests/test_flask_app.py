@@ -1,9 +1,10 @@
 #!/usr/bin/env python
 
 import os
+import pytest
 import sys
-import unittest
 import tempfile
+import unittest
 
 sys.path.append('./flask_app')
 
@@ -11,6 +12,12 @@ import flask_app
 
 
 class HaploCodeChallengeTestCase(unittest.TestCase):
+
+    # so capsys can be used within TestClass
+    @pytest.fixture(autouse=True)
+    def capsys(self, capsys):
+        self.capsys = capsys
+
 
     def setUp(self):
         """ checks database config """
@@ -49,6 +56,21 @@ class HaploCodeChallengeTestCase(unittest.TestCase):
             follow_redirects=True)
         assert b'In a galaxy far far away...' in rv.data
         assert b"<a href='/key=aa'>test message</a>" in rv.data
+
+
+    def test_add_empty_entry(self):
+        rv = self.app.post('/add', 
+            data=dict(
+                key='aa',
+                parent='a',
+                pos='a',
+                text=''
+                ), 
+            follow_redirects=True)
+        out, err = self.capsys.readouterr()
+        assert b'In a galaxy far far away...' in rv.data
+        assert b"<a href='/key=aa'></a>" not in rv.data
+        assert b"Empty text field, entry not added." in err
 
 
     def test_restart_story(self):

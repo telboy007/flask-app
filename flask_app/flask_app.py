@@ -120,11 +120,14 @@ def add_entry():
     """
     global master_key
     db = get_db()
-    db.execute(
-        'insert into entries (key, parent, pos, text) values (?, ?, ?, ?)',
-        [str(master_key + request.form['pos']), master_key, request.form['pos'], request.form['text']]
-        )
-    db.commit()
+    if request.form['text'].strip(' \t\n\r') != "":
+        db.execute(
+            'insert into entries (key, parent, pos, text) values (?, ?, ?, ?)',
+            [str(master_key + request.form['pos']), master_key, request.form['pos'], request.form['text']]
+            )
+        db.commit()
+    else:
+        app.logger.info('Empty text field, entry not added.') 
     return redirect(url_for('show_entries', key=master_key))
 
 
