@@ -99,4 +99,3 @@ ENV/
 .mypy_cache/
 .pytest_cache/
 flask_app/flask_app.db
-flask_app/flask_app.db
