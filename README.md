@@ -2,7 +2,7 @@
 
 ## Description:
 
-Web based build your own multiple path story app written in Python.
+Web based build your own multiple path story app written in Python, a practice exercise to learn Flask and Jinja2.
 
 ## Requirments:
 
