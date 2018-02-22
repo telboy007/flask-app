@@ -25,4 +25,4 @@ NOTE: Debug mode will be active.
 - from flask-app
 - run `python setup.py test` to test the app
 - run `coverage run -m pytest` for test coverage
-- code test coverage at 96%
+- code test coverage currently at 96%
