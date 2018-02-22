@@ -18,7 +18,7 @@ Python 2.7+
     - to prevent this run command `export FLASK_APP=flask_app;export DEBUG=true;flask run`
 - navigate to `http://127.0.0.1:5000` in a browser
 
-NOTE: Debug mode will be active.
+NOTE: Debug mode will be active during running of app.
 
 ## Testing the app:
 
