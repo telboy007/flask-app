@@ -2,7 +2,7 @@
 
 ## Description:
 
-Web based build your own multiple path story app.
+Web based build your own multiple path story app written in Python.
 
 ## Requirments:
 
